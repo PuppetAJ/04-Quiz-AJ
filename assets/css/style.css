@@ -1,0 +1,72 @@
+/* Legacy styles removed */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin: 50px;
+    font-weight: lighter;
+}
+
+.hs {
+    color: #BD60E7;
+}
+
+main {
+    margin: 2vw;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+main p {
+    margin-top: 10px;
+    font-size: 1.5vw;
+}
+
+main h2 {
+    font-weight: bold;
+    font-size: 3vw;
+}
+
+main section {
+    display: flex;
+    flex-direction: column;
+    /* border-bottom: solid 1px #341C75; */
+}
+
+main div {
+    padding: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+button {
+    margin: 5px;
+    border: none;
+    background-color: #341C75;
+    color: white;
+    padding: 25px;
+    font-size: 2vw;
+    border-radius: 30px;   
+}
+
+button:hover {
+    background-color: #BD60E7;
+}
+
