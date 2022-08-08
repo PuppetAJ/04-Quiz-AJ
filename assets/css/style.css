@@ -41,6 +41,7 @@ main p {
 main h2 {
     font-weight: bold;
     font-size: 3vw;
+    max-width: 1600px;
 }
 
 main section {
@@ -53,6 +54,10 @@ main div {
     padding: 20px;
     display: inline-flex;
     flex-direction: column;
+    align-self: flex-start;
+}
+
+.welcome {
     align-self: center;
 }
 
