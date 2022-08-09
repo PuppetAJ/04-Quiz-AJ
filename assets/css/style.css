@@ -20,6 +20,8 @@ header h1 {
 }
 
 .hs {
+    font-size: 1.5vw;
+    margin: 50px;
     color: #BD60E7;
 }
 
@@ -80,9 +82,96 @@ button:hover {
     background-color: #BD60E7;
 }
 
-.label {
+.Wrong {
     color: red;
     font-weight: bold;
-
+    font-style: italic;
 }
 
+.Correct {
+    color: green;
+    font-weight: bold;
+    font-style: italic;
+}
+
+form {
+    display: inline-flex;
+    width: 100%;
+}
+
+#endScreenTitle {
+    font-size: 2vw;
+    align-self: left;
+    margin: 10px;
+}
+
+#endScreenSubtitle {
+    font-size: 1.5vw;
+    font-weight: normal;
+    margin: 10px;
+}
+
+label {
+    font-size: 1.5vw;
+    margin: 10px;
+}
+
+#endScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 700px;
+}
+
+input {
+    margin: 10px;
+}
+
+#initials {
+    min-width: 40%;
+}
+
+#submit {
+    margin: 10px;
+    border: none;
+    background-color: #341C75;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1vw;
+    border-radius: 12px; 
+}
+
+#submit:hover {
+    background-color: #BD60E7; 
+}
+
+#scoreScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 40vw;
+}
+
+.scores {
+    width: 100%;
+    padding: 5px;
+}
+
+.score {
+    padding: 10px;
+    text-align: left;
+    background-color: #D9D3E9;
+    width: 100%;
+}
+
+.scoreButton {
+    padding: 10px 20px;
+    font-size: 1.25vw;
+    border-radius: 15px;
+}
+
+.buttonWrapper {
+    padding: 5px;
+    display: inline-flex;
+    flex-direction: row;
+}
