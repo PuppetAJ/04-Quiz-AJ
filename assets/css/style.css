@@ -5,24 +5,24 @@
     box-sizing: border-box;
 }
 
+/* General styles start */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
+button {
+    margin: 5px;
+    border: none;
+    background-color: #341C75;
+    color: white;
+    padding: 25px;
+    font-size: 2vw;
+    border-radius: 30px;   
 }
 
-header h1 {
-    margin: 50px;
-    font-weight: lighter;
-}
-
-.hs {
-    font-size: 1.5vw;
-    margin: 50px;
-    color: #BD60E7;
+button:hover {
+    background-color: #BD60E7;
 }
 
 main {
@@ -49,12 +49,6 @@ main h2 {
 main #start {
     display: flex;
     flex-direction: column;
-    /* border-bottom: solid 1px #341C75; */
-}
-
-#container {
-    display: flex;
-    flex-direction: column;
 }
 
 main div {
@@ -64,22 +58,42 @@ main div {
     align-self: flex-start;
 }
 
+/* General styles end */
+
+/* Header styles start */
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 1.5vw;
+    margin: 50px;
+    font-weight: lighter;
+}
+
+.hs {
+    font-size: 1.5vw;
+    margin: 50px;
+    color: #BD60E7;
+}
+
+/* Header styles end */
+
+/* Start quiz styles start */
+
 .welcome {
     align-self: center;
 }
 
-button {
-    margin: 5px;
-    border: none;
-    background-color: #341C75;
-    color: white;
-    padding: 25px;
-    font-size: 2vw;
-    border-radius: 30px;   
-}
+/* Start quiz styles end */
 
-button:hover {
-    background-color: #BD60E7;
+/* Question styles start */
+
+#container {
+    display: flex;
+    flex-direction: column;
 }
 
 .Wrong {
@@ -94,9 +108,20 @@ button:hover {
     font-style: italic;
 }
 
+/* Question styles end */
+
+/* Game Over screen styles start */
+
 form {
     display: inline-flex;
     width: 100%;
+}
+
+#endScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 700px;
 }
 
 #endScreenTitle {
@@ -114,13 +139,6 @@ form {
 label {
     font-size: 1.5vw;
     margin: 10px;
-}
-
-#endScreen {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-width: 700px;
 }
 
 input {
@@ -144,6 +162,10 @@ input {
 #submit:hover {
     background-color: #BD60E7; 
 }
+
+/* Game over screen styles end */
+
+/* High score screen styles start */
 
 #scoreScreen {
     display: flex;
@@ -174,4 +196,225 @@ input {
     padding: 5px;
     display: inline-flex;
     flex-direction: row;
+}
+
+/* High score screen styles end */
+
+/* Media queries for responsive design */
+
+@media screen and (max-width: 768px) {
+
+    button {
+        padding: 25px;
+        font-size: 3vw;
+        border-radius: 30px;   
+    }
+    
+    main p {
+        font-size: 2.5vw;
+    }
+    
+    main h2 {
+        font-size: 6vw;
+    }
+
+    header h1 {
+        font-size: 3vw;
+    }
+    
+    .hs {
+        font-size: 3vw;
+    }
+
+    form {
+        width: 100%;
+        align-items: center;
+    }
+    
+    #endScreen {
+        align-items: center;
+        min-width: 50vw;
+    }
+    
+    #endScreenTitle {
+        font-size: 7vw;
+        align-self: center;
+        margin: 10px;
+    }
+    
+    #endScreenSubtitle {
+        font-size: 3vw;
+        font-weight: normal;
+        margin: 20px;
+    }
+    
+    label {
+        font-size: 3vw;
+        margin: 10px;
+    }
+    
+    input {
+        margin: 10px;
+        margin-top: 20px;
+    }
+    
+    #initials {
+        min-width: 30%;
+        min-height: 5vw;
+    }
+    
+    #submit {
+        margin: 10px;
+        padding: 5px 15px;
+        font-size: 3vw;
+        border-radius: 10px; 
+    }
+
+    .scoreButton {
+        padding: 10px 20px;
+        font-size: 2.55vw;
+        border-radius: 15px;
+    }
+
+}
+
+@media screen and (max-width: 575px) {
+
+    button {
+        padding: 20px;
+        font-size: 4vw;
+        border-radius: 20px;   
+    }
+    
+    main p {
+        font-size: 2.85vw;
+        margin-top: 0px;
+    }
+
+    .welcome {
+        padding: 10px;
+    }
+    
+    main h2 {
+        font-size: 7vw;
+    }
+
+    header h1 {
+        font-size: 4vw;
+    }
+
+    form {
+        width: 100%;
+        align-items: center;
+    }
+    
+    #endScreen {
+        align-items: center;
+        min-width: 50vw;
+    }
+    
+    #endScreenTitle {
+        font-size: 8vw;
+        align-self: center;
+        margin: 10px;
+    }
+    
+    #endScreenSubtitle {
+        font-size: 4vw;
+    }
+    
+    label {
+        font-size: 4vw;
+    }
+    
+    input {
+        margin: 10px;
+        margin-top: 10px;
+    }
+    
+    #initials {
+        min-width: 30%;
+        min-height: 6vw;
+    }
+    
+    #submit {
+        margin: 5px;
+        padding: 5px 15px;
+        font-size: 4vw;
+    }
+    
+    .hs {
+        font-size: 4vw;
+    }
+
+    .score {
+        margin: 5px;
+        font-size: 4vw;
+    }
+
+    .scoreButton {
+        font-size: 4vw;
+    }
+
+}
+
+@media screen and (max-width:400px) {
+
+    header h1 {
+        font-size: 6vw;
+        margin: 25px;
+    }
+
+    .hs {
+        font-size: 6vw;
+        margin: 25px;
+    }
+
+    main h2 {
+        font-size: 12vw;
+        margin: 10px;
+    }
+
+    main p {
+        font-size: 5vw;
+        margin-top: 0px;
+    }
+
+    #endScreenTitle {
+        font-size: 9vw;
+        align-self: center;
+        margin: 10px;
+    }
+    
+    #endScreenSubtitle {
+        font-size: 6vw;
+    }
+    
+    label {
+        font-size: 5vw;
+        margin: auto;
+    }
+    
+    input {
+        margin: 2px;
+        margin-top: 2px;
+    }
+    
+    #initials {
+        min-width: auto;
+        min-height: 10vw;
+    }
+    
+    #submit {
+        margin: 5px;
+        padding: 5px 15px;
+        font-size: 6vw;
+    }
+
+    button {
+        padding: 20px;
+        font-size: 6vw;
+        border-radius: 20px;   
+    }
+
 }

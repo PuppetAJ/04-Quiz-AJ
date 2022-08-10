@@ -430,19 +430,23 @@ var questionChecker = function(target) {
 
 };
 
+// Logic for generating the game over screen
 var gameOver = function() {
 
+    // Sets text content of "view high scores" back to being visible
     if (document.querySelector(".hs")) {
         var viewHsEl = document.querySelector(".hs");
         viewHsEl.textContent = "View high scores";
         viewHsEl.addEventListener("click", highScorePage);
     }
 
+    // If link is pressed when a section element with the ID of container is pressed, then it will remove it before generating the next elements
     if (document.getElementById("container")) {
         var container = document.getElementById("container");
         container.remove();
     }
 
+    // Elemnent generation
     var sectionEl = document.createElement("section");
     var h2El = document.createElement("h2");
     var h3El = document.createElement("h3");
@@ -451,6 +455,7 @@ var gameOver = function() {
     var inputEl = document.createElement("input");
     var submitEl = document.createElement("input");
 
+    // Setting important attributes to each element
     sectionEl.setAttribute("id", "endScreen");
     h2El.setAttribute("id", "endScreenTitle");
     h3El.setAttribute("id", "endScreenSubtitle");
@@ -460,10 +465,12 @@ var gameOver = function() {
     submitEl.setAttribute("value", "submit");
     submitEl.setAttribute("id", "submit");
 
+    // Sets text content of elements
     h2El.textContent = "All Done!";
     h3El.textContent = "Your final score is " + counter + "!";
     labelEl.textContent = "Enter initials";
 
+    // Appends all elements in the order we desire
     formEl.appendChild(labelEl);
     formEl.appendChild(inputEl);
     formEl.appendChild(submitEl);
@@ -474,18 +481,26 @@ var gameOver = function() {
 
     wrapperEl.appendChild(sectionEl);
     
+    // Makes sure to remove both the colored border of wrong/right answers, and the paragraph element containing the text
     wrapperEl.style.borderBottom = "none";
     pEl.remove();
 
+    // binds anymous function to the game over's high score submit button
     formEl.addEventListener("submit", function(event) {
+        // prevents submit from reloading page
         event.preventDefault();
 
         var input = document.getElementById("initials").value
 
+        // Input validation, makes sure that initials are actually input and that the text box is not empty
         if (input === null || input === "" || input.length > 3) {
 
             alert("You must write your initials!");
-
+            
+            // Resets invalid input
+            formEl.reset()
+        
+        // When valid criteria is input, package the username and high score into an object, and push it into an array of scores
         } else {
             var score = counter
 
@@ -495,8 +510,11 @@ var gameOver = function() {
             }
     
             scores.push(userValues);
+            // Saves scores
             saveScores();
+            // Resets inputs
             formEl.reset();
+            // Takes the user to the high score page
             highScorePage();
 
         }
@@ -506,13 +524,16 @@ var gameOver = function() {
    
 };
 
+// Logic for generating the high scores page
 var highScorePage = function() {
 
+    // Removes the text content of the timer when on the high score page
     if (document.getElementById("timer")) {
         var timerEl = document.getElementById("timer");
         timerEl.textContent = "";
     }
 
+    // Removes the text content of the view high scores link 
     if (document.querySelector(".hs")) {
         var viewHsEl = document.querySelector(".hs");
         viewHsEl.textContent = "";
@@ -520,16 +541,19 @@ var highScorePage = function() {
         viewHsEl.addEventListener("click", homePageGen);
     }
 
+    // If on the gameover screen, it will remove those elements before generating the high score page
     if (document.getElementById("endScreen")) {
         var endSectionEl = document.getElementById("endScreen");
         endSectionEl.remove();
     }
 
+    // If on the start page, it will remove those elements before generating the high score page
     if (document.getElementById("start")) {
         var startSectionEl = document.getElementById("start");
         startSectionEl.remove();
     }
 
+    // Element creation
     var sectionEl = document.createElement("section");
     var h2El = document.createElement("h2");
     var divEl1 = document.createElement("div");
@@ -537,13 +561,19 @@ var highScorePage = function() {
     var buttonEl1 = document.createElement("button");
     var buttonEl2 = document.createElement("button");
 
+    // Reads the length of the scores array and loops through it creating a p element for each high score saved in the array
     for (var i = 0; i < scores.length; i++) {
+        // Element creation
         var scoreEl = document.createElement("p");
+        // Sets text content to the username and user score of the index the loop is on
         scoreEl.textContent = (i + 1) + ". " + scores[i].userName + " - " + scores[i].userScore;
+        // Gives the p element a class of score
         scoreEl.setAttribute("class", "score");
+        // Appends element
         divEl1.appendChild(scoreEl);
     }
 
+    // Attribute setting for elements
     sectionEl.setAttribute("id", "scoreScreen");
     h2El.setAttribute("id", "endScreenTitle");
     divEl1.setAttribute("class", "scores");
@@ -551,10 +581,12 @@ var highScorePage = function() {
     buttonEl1.setAttribute("class", "scoreButton");
     buttonEl2.setAttribute("class", "scoreButton");
 
+    // Sets text content for elements
     h2El.textContent = "High Scores:";
     buttonEl1.textContent = "Go back";
     buttonEl2.textContent = "Clear high scores";
 
+    // Appends elements
     divEl2.appendChild(buttonEl1);
     divEl2.appendChild(buttonEl2);
 
@@ -564,52 +596,82 @@ var highScorePage = function() {
 
     wrapperEl.appendChild(sectionEl);
 
+    // Adds click event listeners to the "go back" and "clear scores" buttons
     buttonEl1.addEventListener("click", homePageGen);
     buttonEl2.addEventListener("click", clearScores);
     
 };
 
+// Logic for saving scores to local storage
 var saveScores = function() {
+
+    // Sorts scores before saving
+    sortScores();
+
+    // stringifies the scores array and sets it a key of "scores" in local storage
     localStorage.setItem("scores", JSON.stringify(scores));
+
 };
 
+// Logic for loading saved scores from local storage into the program
 var loadScores = function() {
 
+    // Gets the item linked to key "scores" in local storage
     var savedScores = localStorage.getItem("scores");
 
+    // If nothing is found, return
     if (!savedScores) {
         return false;
     }
 
+    // Otherwise, parse the contents back into an array from a string
     savedScores = JSON.parse(savedScores);
 
+    // Then, iterate through the array and add each element back into the "scores" array for access by the program
     for (var i = 0; i < savedScores.length; i++) {
         scores.push(savedScores[i]);
     }
 
+    // Finally sort the scores now in the array
+    sortScores();
+
 };
 
+// Logic for clearing the saved high scores
 var clearScores = function() {
 
+    // Empties the scores array of saved scores
     scores = [];
+
+    // Sets the "scores" key in local storage equal to the now empty array
     localStorage.setItem("scores", scores);
 
+    // If on the high scores page, remove all elements before regenerating them to reload the scores
     if (document.getElementById("scoreScreen")) {
         var scoreScreen = document.getElementById("scoreScreen");
         scoreScreen.remove();
     }
-
+    
+    // Reloads scores by generating the high scores page again
     highScorePage();
 };
 
+// Logic for sorting high scores
+var sortScores = function() {
+
+    // arrow function which compares the userScore values of the objects in the scores array, and sorts from highest to lowest as needed
+    scores.sort((a, b) => b.userScore - a.userScore);
+}
+
+// Loads scores from local storage each time the webpage is opened
 loadScores();
+
+// Adds initial event listeners to the start quiz button, as well as the view high scores link
 startQuizEl.addEventListener("click", startQuiz);
 highScoreEl.addEventListener("click", highScorePage);
 
 /* 
     TO DO:
-    - Finish adding comments
-    - Reorganize style sheet
     - Upload all files
-    - Potentially sort the highscores from greatest to least
+    - add media queries?
 */
